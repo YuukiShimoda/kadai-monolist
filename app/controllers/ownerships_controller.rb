@@ -35,11 +35,9 @@ class OwnershipsController < ApplicationController
     if params[:type] == 'Have'
       current_user.unhave(@item)
       flash[:success] = '商品の Have を解除しました。'
-　　end
+    end
 
     redirect_back(fallback_location: root_path)
+    
   end
-  
-  
-  
 end
