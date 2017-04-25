@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :want_items, through: :wants, class_name: 'Item', source: :item
 
   has_many :has
-  has_many :have_items, through: :has, class_name: 'Have_item' , source: :item
+  has_many :have_items, through: :has, class_name: 'H_item' , source: :item
   
   def want(item)
     self.wants.find_or_create_by(item_id: item.id)
@@ -28,17 +28,17 @@ class User < ApplicationRecord
     self.want_items.include?(item)
   end
 
-  def have(have_item)
+  def have(item)
     self.has.find_or_create_by(item_id: item.id)
   end
 
-  def unhave(have_item)
+  def unhave(item)
     have = self.has.find_by(item_id: item.id)
     have.destroy if have
   end
 
-  def have?(have_item)
-    self.have_have_items.include?(have_item)
+  def have?(item)
+    self.have_items.include?(item)
   end
 
 
